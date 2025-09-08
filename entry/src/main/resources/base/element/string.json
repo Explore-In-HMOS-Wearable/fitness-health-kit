@@ -1,0 +1,96 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "splash_text",
+      "value": "iFit"
+    },
+    {
+      "name": "internet",
+      "value": "internet"
+    },
+    {
+      "name": "READ_HEALTH_DATA",
+      "value": "Read heart rate"
+    },
+    {
+      "name": "start",
+      "value": "Start"
+    },
+    {
+      "name": "exercises",
+      "value": "Exercises"
+    },
+    {
+      "name": "round",
+      "value": "Round"
+    },
+    {
+      "name": "slow",
+      "value": "Slow"
+    },
+    {
+      "name": "fast",
+      "value": "Fast"
+    },
+    {
+      "name": "heart_rate",
+      "value": "Heart Rate"
+    },
+    {
+      "name": "timer",
+      "value": "Timer"
+    },
+    {
+      "name": "qr",
+      "value": "Install iFit to your mobile"
+    },
+    {
+      "name": "steps",
+      "value": "Steps"
+    },
+    {
+      "name": "loading",
+      "value": "Loading..."
+    },
+    {
+      "name": "no_step",
+      "value": "No step data available."
+    },
+    {
+      "name": "continue",
+      "value": "Continue"
+    },
+    {
+      "name": "access_token",
+      "value": "Access Token is:"
+    },
+
+
+    {
+      "name": "baseurl",
+      "value": "wger.de/"
+    },
+    {
+      "name": "url",
+      "value": "wger.de/api/v2/exerciseimage/"
+    },
+    {
+      "name": "sampleSet",
+      "value": "hihealthbase-dre.things.dbankcloud.cn/healthkit/v2/sampleSet:polymerize"
+    },
+    {
+      "name": "authurl",
+      "value": "oauth-login.cloud.huawei.com/oauth2/v3/token"
+    }
+
+
+  ]
+}
