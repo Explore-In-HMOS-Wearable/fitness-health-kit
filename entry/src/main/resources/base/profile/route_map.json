@@ -1,0 +1,44 @@
+{
+  "routerMap": [
+    {
+      "name": "QRPage",
+      "pageSourceFile": "src/main/ets/pages/QRPage.ets",
+      "buildFunction": "QRPageBuilder"
+    },
+    {
+      "name": "AuthenticationPage",
+      "pageSourceFile": "src/main/ets/pages/AuthenticationPage.ets",
+      "buildFunction": "AuthenticationPageBuilder"
+    },
+    {
+      "name": "HomePage",
+      "pageSourceFile": "src/main/ets/pages/HomePage.ets",
+      "buildFunction": "HomePageBuilder"
+    },
+    {
+      "name": "HeartRatePage",
+      "pageSourceFile": "src/main/ets/pages/HeartRatePage.ets",
+      "buildFunction": "HeartRatePageBuilder"
+    },
+    {
+      "name": "Timer",
+      "pageSourceFile": "src/main/ets/pages/Timer.ets",
+      "buildFunction": "TimerPageBuilder"
+    },
+    {
+      "name": "PrepareRound",
+      "pageSourceFile": "src/main/ets/pages/PrepareRound.ets",
+      "buildFunction": "PrepareRoundPageBuilder"
+    },
+    {
+      "name": "ExercisesPage",
+      "pageSourceFile": "src/main/ets/pages/ExercisesPage.ets",
+      "buildFunction": "ExercisesPageBuilder"
+    },
+    {
+      "name": "StepsPage",
+      "pageSourceFile": "src/main/ets/pages/StepsPage.ets",
+      "buildFunction": "StepsPageBuilder"
+    }
+  ]
+}

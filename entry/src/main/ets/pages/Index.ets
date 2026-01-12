@@ -1,4 +1,4 @@
-import { router, curves } from '@kit.ArkUI';
+import { curves } from '@kit.ArkUI';
 
 @Entry
 @Component
@@ -6,7 +6,8 @@ struct Index {
   private timerId = 0;
   @State imageTranslateY: number = 300;
   @State textOffsetY: number = -50;
-  @State textOpacity: number = 0;
+  textOpacity: number = 0;
+  @Provide('mainStack') pathStack: NavPathStack = new NavPathStack()
 
   aboutToAppear() {
     setTimeout(() => {
@@ -19,8 +20,8 @@ struct Index {
     }, 300);
 
     this.timerId = setTimeout(() => {
-      router.pushUrl({
-        url: 'pages/QRPage',
+      this.pathStack.pushPath({
+        name: 'QRPage'
       });
     }, 3000);
   }
@@ -32,7 +33,7 @@ struct Index {
   }
 
   build() {
-    Stack() {
+    Navigation(this.pathStack) {
       Column() {
         Text($r('app.string.splash_text'))
           .fontSize(26)
@@ -42,23 +43,27 @@ struct Index {
             curve: curves.initCurve(),
             iterations: 1,
             duration: 800,
-            playMode: PlayMode.Normal,
+            playMode: PlayMode.Normal
           })
 
         Image($r('app.media.splash'))
-          .height('35%')
+          .height(50)
+          .width(50)
           .translate({ y: this.imageTranslateY })
           .animation({
             curve: curves.initCurve(),
             iterations: 1,
             duration: 1000,
-            playMode: PlayMode.Normal,
+            playMode: PlayMode.Normal
           })
       }
-      .align(Alignment.Center)
+      .justifyContent(FlexAlign.Center)
+      .alignItems(HorizontalAlign.Center)
+      .width('100%')
+      .height('100%')
     }
+    .hideTitleBar(true)
     .width('100%')
     .height('100%')
-    .backgroundColor(Color.Black)
   }
 }

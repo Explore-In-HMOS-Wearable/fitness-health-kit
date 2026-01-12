@@ -1,7 +1,7 @@
 import { getHttp } from '../utils/RCP';
 import ExerciseModel from '../model/ExerciseModel';
 import { RSPModel } from '../model/RSPModel';
-import { url } from '../utils/RCPConstants';
+import { getUrl } from '../utils/RCPConstants';
 
 @Observed
 export class ExerciseViewModel {
@@ -20,7 +20,7 @@ export class ExerciseViewModel {
   }
 
   async getExercises() {
-    const response = await getHttp(url) ?? []
+    const response = await getHttp(getUrl()) ?? []
     const rsp = response as RSPModel;
     this.allExercises = rsp.results;
 

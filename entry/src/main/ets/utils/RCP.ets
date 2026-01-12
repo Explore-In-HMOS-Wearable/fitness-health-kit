@@ -1,10 +1,9 @@
 import { rcp } from '@kit.RemoteCommunicationKit';
-import { BASE_URL } from '../utils/RCPConstants';
-
+import { getBaseUrl } from '../utils/RCPConstants';
 
 function sessionConfig(): rcp.SessionConfiguration {
   return {
-    baseAddress: BASE_URL
+    baseAddress: getBaseUrl()
   }
 }
 

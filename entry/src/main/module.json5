@@ -43,7 +43,7 @@
             "name": "ohos.extension.backup",
             "resource": "$profile:backup_config"
           }
-        ],
+        ]
       }
     ],
     "requestPermissions": [
@@ -61,6 +61,7 @@
           "when": "inuse"
         }
       }
-    ]
+    ],
+    "routerMap": "$profile:route_map"
   }
 }

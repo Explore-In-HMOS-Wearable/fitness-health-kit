@@ -6,6 +6,7 @@ let settingsPreferences: preferences.Preferences | null = null;
 @Observed
 export default class Preferences {
   static instance = new Preferences();
+  private uiContext?: UIContext;
 
   constructor() {
     this.initialize();
@@ -16,7 +17,7 @@ export default class Preferences {
   }
 
   async getPreferencesFromStorage() {
-    const context = getContext(this) as Context;
+    const context = this.uiContext?.getHostContext() as Context;
     settingsPreferences = await preferences.getPreferences(context, PREFERENCES_NAME);
   }
 

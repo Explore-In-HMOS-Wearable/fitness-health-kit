@@ -4,12 +4,12 @@ import { BusinessError } from '@kit.BasicServicesKit';
 @Concurrent
 export function processRespTask(err: BusinessError, data: http.HttpResponse) {
   if (!err) {
-    console.info('Result:' + data.result);
-    console.info('code:' + data.responseCode);
-    console.info('type:' + JSON.stringify(data.resultType));
-    console.info('header:' + JSON.stringify(data.header));
-    console.info('cookies:' + data.cookies);
+    console.info(`Result: ${data.result}`);
+    console.info(`Code: ${data.responseCode}`);
+    console.info(`Type: ${JSON.stringify(data.resultType)}`);
+    console.info(`Header: ${JSON.stringify(data.header)}`);
+    console.info(`Cookies: ${data.cookies}`);
   } else {
-    console.info('error:' + JSON.stringify(err));
+    console.info(`Error: ${JSON.stringify(err)}`);
   }
 }

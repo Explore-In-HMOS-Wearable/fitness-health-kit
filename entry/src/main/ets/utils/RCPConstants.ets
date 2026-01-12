@@ -1,7 +1,31 @@
-export const BASE_URL = 'https://'+ getContext(this).resourceManager.getStringSync($r('app.string.baseurl').id)
+import common from '@ohos.app.ability.common';
 
-export const url = 'https://'+ getContext(this).resourceManager.getStringSync($r('app.string.url').id)
+class ContextManager {
+  private static ctx: common.UIAbilityContext;
 
-export const sampleSet = 'https://'+ getContext(this).resourceManager.getStringSync($r('app.string.sampleSet').id)
+  static setContext(context: common.UIAbilityContext): void {
+    ContextManager.ctx = context;
+  }
 
-export const auth_url = 'https://'+ getContext(this).resourceManager.getStringSync($r('app.string.authurl').id)
+  static getUIAbilityContext(): common.UIAbilityContext {
+    return ContextManager.ctx;
+  }
+}
+
+export { ContextManager };
+
+export function getBaseUrl(): string {
+  return `https://${ContextManager.getUIAbilityContext().resourceManager.getStringSync($r('app.string.baseurl').id)}`;
+}
+
+export function getUrl(): string {
+  return `https://${ContextManager.getUIAbilityContext().resourceManager.getStringSync($r('app.string.url').id)}`;
+}
+
+export function getSampleSet(): string {
+  return `https://${ContextManager.getUIAbilityContext().resourceManager.getStringSync($r('app.string.sampleSet').id)}`;
+}
+
+export function getAuthUrl(): string {
+  return `https://${ContextManager.getUIAbilityContext().resourceManager.getStringSync($r('app.string.authurl').id)}`;
+}

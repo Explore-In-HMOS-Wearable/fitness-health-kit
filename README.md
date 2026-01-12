@@ -1,15 +1,15 @@
 > **Note:** To access all shared projects, get information about environment setup, and view other guides, please visit [Explore-In-HMOS-Wearable Index](https://github.com/Explore-In-HMOS-Wearable/hmos-index).
 
-# Fitness App with Health Kit
+# Fitness Health Kit App with Health Kit
 This project demonstrates an application that runs with HarmonyOS Next wearable devices. This wearable project integrates with Health Kit to provide health data.
 
 # Preview
 
 <div>
-   <img src="./screenshots/authoutput.png" width="24%"/>
-   <img src="./screenshots/tokenoutput.png" width="24%"/>
-   <img src="./screenshots/stepsoutput.png" width="24%"/>
-   <img src="./screenshots/hroutput.png" width="24%"/>
+<img src="./screenshots/authoutput.png" width="24%"/>
+<img src="./screenshots/tokenoutput.png" width="24%"/>
+<img src="./screenshots/stepsoutput.png" width="24%"/>
+<img src="./screenshots/hroutput.png" width="24%"/>
 </div>
 
 # Use Cases
@@ -26,15 +26,19 @@ This project aims to provide users with a seamless, real-time health and fitness
 - **Heart Rate Page**: The user can see the real-time heart rate with body sensor.
 - **Timer Page**: The user can adjust the timer settings with fast and slow intervals. 1 round = 1 fast + 1 slow
 
-# Tech Stack
+# Technology
+## Stack
 
 - **Languages**: ArkTS
-- **Frameworks**: HarmonyOS SDK 5.1.0(18)
-- **Tools**: DevEco Studio Vers 5.1.0.842
 - **Libraries**: @kit.ArkUI, @kit.RemoteCommunicationKit, @kit.ArkWeb, @kit.NetworkKit,@kit.BasicServicesKit,  @kit.SensorServiceKit
   +Health Cloud
 
+## Required Permissions
+- ohos.permission.INTERNET
+- ohos.permission.READ_HEALTH_DATA
+
 # Directory Structure
+
    ```
 entry/src/main/ets/
 |---common
@@ -85,12 +89,11 @@ entry/src/main/ets/
    ```
 
 # Constraints and Restrictions
+
 ## Supported Devices
 - Huawei Watch 5
-## Permissions
-- ohos.permission.INTERNET
-- ohos.permission.READ_HEALTH_DATA
 
 # License
-**Fitness App with Health Kit** is distributed under the terms of the MIT License
+
+**Fitness Health Kit** is distributed under the terms of the MIT License
 See the [LICENSE](./LICENSE) for more information.

@@ -1,27 +1,38 @@
-import { router } from '@kit.ArkUI';
 import { INavParams } from '../model/INavParams';
 import TimerConstants from '../utils/TimerConstans';
 import { TimerService } from '../viewmodel/TimerService';
+
+@Builder
+export function TimerPageBuilder() {
+  Timer()
+}
 
 @Entry
 @Component
 export struct Timer {
   private textTimerController: TextTimerController = new TextTimerController();
   private timerService: TimerService = new TimerService();
-  @State fastDuration: number = 10;
-  @State slowDuration: number = 5;
+  fastDuration: number = 10;
+  slowDuration: number = 5;
   @State repetitions: number = 2;
-  @State repetitionsRemain: number = 3;
+  repetitionsRemain: number = 3;
   @State timerSec: number = 10;
   @State remainderMs: number = TimerConstants.INIT_COUNTDOWN_SEC * TimerConstants.SEC_TO_MS;
   @State currentTimerCount: number = TimerConstants.INIT_COUNTDOWN_SEC * TimerConstants.SEC_TO_MS;
   @State currentGradient: LinearGradient = TimerConstants.INIT_COUNTDOWN_GD;
-  @State isSlowDuration: boolean = false;
+  isSlowDuration: boolean = false;
   @State currentActivity: string = 'to Start!';
-  @State currentRepetition: number = 0;
-  @State currentRoundDisplay: number = 0; //  UI'de gösterilecek round sayısı
+  currentRepetition: number = 0;
+  @State currentRoundDisplay: number = 0; //  round count for UI
+  @Consume('mainStack') pathStack: NavPathStack;
+  timer: INavParams = {
+    fastDuration: 0,
+    slowDuration: 0,
+    repetitions: 0
+  }
 
   aboutToAppear(): void {
+    this.timer = this.pathStack.getParamByName('Timer')[0] as INavParams
     this.loadParameters();
     this.resetTimer();
     setTimeout((): void => this.startInitialCountdown(), TimerConstants.INIT_DELAY);
@@ -31,16 +42,11 @@ export struct Timer {
     this.timerService.clear();
   }
 
-  onBackPress(): boolean | void {
-    router.back();
-  }
-
   private loadParameters(): void {
-    const params = router.getParams() as INavParams;
-    if (params) {
-      this.fastDuration = params.fastDuration;
-      this.slowDuration = params.slowDuration;
-      this.repetitions = params.repetitions;
+    if (this.timer) {
+      this.fastDuration = this.timer.fastDuration;
+      this.slowDuration = this.timer.slowDuration;
+      this.repetitions = this.timer.repetitions;
       this.repetitionsRemain = this.repetitions;
     }
   }
@@ -85,7 +91,7 @@ export struct Timer {
     this.currentGradient = isSlowDuration ? TimerConstants.SLOW_DURATION_GD : TimerConstants.FAST_DURATION_GD;
     this.currentActivity = isSlowDuration ? 'Slow' : 'Fast';
 
-    //  UI'de gösterilecek round sayısını her turda güncelle
+    //  update round count
     this.currentRoundDisplay = this.currentRepetition + 1;
 
     this.textTimerController.reset();
@@ -109,7 +115,7 @@ export struct Timer {
         this.onCompleteAllTimers();
       }
     } else {
-      // Fast tamamlandı, sırada slow var
+      // Fast completed, next slow
       setTimeout((): void => this.startTimer(this.slowDuration, true), TimerConstants.DELAY);
     }
   }
@@ -119,36 +125,39 @@ export struct Timer {
   }
 
   build() {
-    Column() {
-      Stack() {
-        Progress({
-          value: this.remainderMs,
-          total: this.timerSec * TimerConstants.SEC_TO_MS,
-          type: ProgressType.Ring
-        })
-          .width('100%')
-          .color(this.currentGradient)
-          .style({ strokeWidth: 20, enableScanEffect: true })
+    NavDestination() {
 
-        Column() {
-          TextTimer({
-            isCountDown: true,
-            count: this.currentTimerCount,
-            controller: this.textTimerController
+      Column() {
+        Stack() {
+          Progress({
+            value: this.remainderMs,
+            total: this.timerSec * TimerConstants.SEC_TO_MS,
+            type: ProgressType.Ring
           })
-            .format(TimerConstants.TIME_FORMAT)
-            .fontColor(Color.White)
-            .fontSize(50)
-            .fontWeight(700)
+            .width('100%')
+            .color(this.currentGradient)
+            .style({ strokeWidth: 20, enableScanEffect: true })
 
-          //  Her fast & slow ekranında Round x/y yazısı gösterilir
-          Text(this.currentActivity + ' - Round ' + this.currentRoundDisplay + '/' + this.repetitions)
-            .fontSize(10)
+          Column() {
+            TextTimer({
+              isCountDown: true,
+              count: this.currentTimerCount,
+              controller: this.textTimerController
+            })
+              .format(TimerConstants.TIME_FORMAT)
+              .fontColor(Color.White)
+              .fontSize(50)
+              .fontWeight(700)
+
+            Text(`${this.currentActivity} - Round ${this.currentRoundDisplay}/${this.repetitions}`)
+              .fontSize(10)
+          }
         }
       }
+      .height('100%')
+      .width('100%')
+      .padding(10)
     }
-    .height('100%')
-    .width('100%')
-    .padding(10)
+    .hideBackButton(true)
   }
 }
